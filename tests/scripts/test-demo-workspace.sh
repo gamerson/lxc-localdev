@@ -42,7 +42,7 @@ done
 
 docker run \
   --rm \
-  --name \
+  --name localdev-server-test-start \
   --network ${DOCKER_NETWORK} \
   localdev-test-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
@@ -57,7 +57,7 @@ docker container rm -f localdev-test-start dxp-server
 
 docker run \
   --rm \
-  --name \
+  --name localdev-server-test-stop \
   --network ${DOCKER_NETWORK} \
   localdev-runtime-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
