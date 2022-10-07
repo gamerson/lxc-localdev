@@ -16,6 +16,10 @@ docker build \
   -t localdev-server-test \
   ${LOCALDEV_REPO}/docker/images/localdev-server
 
+docker build \
+  -t localdev-dnsmasq \
+  ${LOCALDEV_REPO}/docker/images/localdev-dnsmasq
+
 rm -rf ${LOCALDEV_REPO}/tests/work/
 
 git clone --depth 1 https://github.com/gamerson/gartner-client-extensions-demo ${LOCALDEV_REPO}/tests/work/gartner-client-extensions-demo
