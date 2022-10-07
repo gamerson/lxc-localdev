@@ -22,6 +22,6 @@ jobs:
         shell: bash
         env:
           GITHUB_CI: "true"
-          LOCALDEV_REPO: "${GITHUB_WORKSPACE}"
         run: |
+          export LOCALDEV_REPO=${GITHUB_WORKSPACE}
           ./tests/scripts/test-demo-workspace.sh
