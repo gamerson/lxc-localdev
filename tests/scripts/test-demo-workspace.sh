@@ -22,9 +22,8 @@ git clone --depth 1 https://github.com/gamerson/gartner-client-extensions-demo $
 
 (docker run \
   --rm \
-  --name \
+  --name localdev-server-test-start \
   --network ${DOCKER_NETWORK} \
-  localdev-test-start \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
   -v ${LOCALDEV_REPO}/tests/work/gartner-client-extensions-demo:/workspace/client-extensions \
@@ -42,9 +41,8 @@ done
 
 docker run \
   --rm \
-  --name localdev-server-test-start \
+  --name localdev-server-test-stop \
   --network ${DOCKER_NETWORK} \
-  localdev-test-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
   -v ${LOCALDEV_REPO}/tests/work/gartner-client-extensions-demo:/workspace/client-extensions \
