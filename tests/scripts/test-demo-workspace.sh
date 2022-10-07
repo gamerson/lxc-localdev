@@ -34,4 +34,4 @@ until [ "$FOUND_CONFIG_MAPS" == "4" ]; do
   sleep 5
 done
 
-docker kill localdev-test dxp-server
+docker container rm -rf localdev-test dxp-server
