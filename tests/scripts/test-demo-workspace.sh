@@ -24,7 +24,7 @@ git clone --depth 1 https://github.com/gamerson/gartner-client-extensions-demo $
   -v ${LOCALDEV_REPO}/tests/work/gartner-client-extensions-demo:/workspace/client-extensions \
   -v localdevGradleCache:/root/.gradle \
   -v localdevLiferayCache:/root/.liferay \
-  localdev-server \
+  localdev-server-test \
   /repo/scripts/ext/start.sh) &
 
 FOUND_CONFIG_MAPS=0
@@ -43,7 +43,7 @@ docker run \
   -v ${LOCALDEV_REPO}/tests/work/gartner-client-extensions-demo:/workspace/client-extensions \
   -v localdevGradleCache:/root/.gradle \
   -v localdevLiferayCache:/root/.liferay \
-  localdev-server \
+  localdev-server-test \
   /repo/scripts/ext/stop.sh
 
 docker container rm -f localdev-test-start dxp-server
@@ -54,5 +54,5 @@ docker run \
   localdev-runtime-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
-  localdev-server \
+  localdev-server-test \
   /repo/scripts/runtime/stop.sh
