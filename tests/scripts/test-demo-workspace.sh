@@ -7,6 +7,11 @@ if [ -z "$LOCALDEV_REPO" ]; then
   exit 1
 fi
 
+if [ -z "$DOCKER_NETWORK" ]; then
+  echo "Must specify DOCKER_NETWORK env var"
+  exit 1
+fi
+
 docker build \
   -t localdev-server-test \
   ${LOCALDEV_REPO}/docker/images/localdev-server
@@ -18,6 +23,7 @@ git clone --depth 1 https://github.com/gamerson/gartner-client-extensions-demo $
 (docker run \
   --rm \
   --name \
+  --network ${DOCKER_NETWORK} \
   localdev-test-start \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
@@ -37,6 +43,7 @@ done
 docker run \
   --rm \
   --name \
+  --network ${DOCKER_NETWORK} \
   localdev-test-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
@@ -51,6 +58,7 @@ docker container rm -f localdev-test-start dxp-server
 docker run \
   --rm \
   --name \
+  --network ${DOCKER_NETWORK} \
   localdev-runtime-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \

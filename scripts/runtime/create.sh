@@ -31,8 +31,6 @@ k3d cluster create \
 kubectl config use-context k3d-localdev
 kubectl config set-context --current --namespace=default
 
-k3d kubeconfig merge localdev --kubeconfig-merge-default    
-
 # poll until default service account is created
 
 SA="0"
