@@ -39,7 +39,7 @@ git clone --depth 1 https://github.com/gamerson/gartner-client-extensions-demo $
 FOUND_CONFIG_MAPS=0
 
 until [ "$FOUND_CONFIG_MAPS" == "4" ]; do
-  FOUND_CONFIG_MAPS=$(docker exec -i localdev-test-start /entrypoint.sh kubectl get cm | grep ext-init-metadata | wc -l | xargs)
+  FOUND_CONFIG_MAPS=$(docker exec -i localdev-server-test-start /entrypoint.sh kubectl get cm | grep ext-init-metadata | wc -l | xargs)
   sleep 5
 done
 
@@ -55,7 +55,7 @@ docker run \
   localdev-server-test \
   /repo/scripts/ext/stop.sh
 
-docker container rm -f localdev-test-start dxp-server
+docker container rm -f localdev-server-test-start dxp-server
 
 docker run \
   --rm \
