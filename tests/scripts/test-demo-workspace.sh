@@ -61,7 +61,6 @@ docker run \
   --rm \
   --name localdev-server-test-stop \
   --network ${DOCKER_NETWORK} \
-  localdev-runtime-stop \
   -v /var/run/docker.sock:/var/run/docker.sock \
   -v ${LOCALDEV_REPO}:/repo \
   localdev-server-test \
