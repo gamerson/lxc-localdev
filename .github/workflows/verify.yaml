@@ -11,8 +11,8 @@ env:
   LC_ALL: en_US.UTF-8
 
 jobs:
-  TestDemoWorkspace:
-    name: Test Demo Workspace
+  TestDemoWorkspaceAmd64:
+    name: Test demo workspace amd64
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -26,3 +26,24 @@ jobs:
         run: |
           export LOCALDEV_REPO=${GITHUB_WORKSPACE}
           ./tests/scripts/test-demo-workspace.sh
+  TestDemoWorkspaceArm64:
+    name: Test demo workspace arm64
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - uses: uraimo/run-on-arch-action@v2
+        name: Run commands
+        id: runcmd
+        with:
+          arch: aarch64
+          distro: ubuntu_latest
+
+          # Not required, but speeds up builds by storing container images in
+          # a GitHub package registry.
+          githubToken: ${{ github.token }}
+
+          # Set an output parameter `uname` for use in subsequent steps
+          run: |
+            export LOCALDEV_REPO=${GITHUB_WORKSPACE}
+            export DOCKER_NETWORK="host"
+            ./tests/scripts/test-demo-workspace.sh
